@@ -1,0 +1,6 @@
+{
+  "name": "hashinteractive/kirkwood",
+  "type": "wordpress-plugin",
+  "description": "Kirkwood Plugin",
+  "license": "GPL-2.0+"
+}
