@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Kirkwood 
- * Plugin URI:        https://gitlab.com/tthenne/kirkwood-plugin 
+ * Plugin URI:        https://github.com/hashinteractive/kirkwood 
  * Description:       Custom Plugin for Kirkwood functionalty to extend WordPress.
  * Version:           1.0
  * Author:            Hash Interactive 
