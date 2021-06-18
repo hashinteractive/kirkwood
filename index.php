@@ -24,7 +24,14 @@ function register_custom_post_types()
       'has_archive' => true,
       'hierarchical' => false,
       'with_front' => true,
-      'show_in_graphql' => true
+      'show_in_graphql' => true,
+      'supports' => [
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+        'custom-fields'
+      ]
     ],
   ];
 
