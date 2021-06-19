@@ -97,5 +97,16 @@ add_action('init', 'register_custom_post_types');
 function cc_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
   return $mimes;
- }
- add_filter('upload_mimes', 'cc_mime_types');
+}
+add_filter('upload_mimes', 'cc_mime_types');
+
+/**
+ * Register Menus
+ */
+function kirkwood_register_nav_menus(){
+  register_nav_menus( array(
+      'footer_personal' => __( 'Footer Personal', 'kirkwood' ),
+      'footer_business'  => __( 'Footer Business', 'kirkwood' ),
+  ) );
+}
+add_action( 'after_setup_theme', 'kirkwood_register_nav_menus', 0 );
