@@ -107,6 +107,8 @@ function kirkwood_register_nav_menus(){
   register_nav_menus( array(
       'footer_personal' => __( 'Footer Personal', 'kirkwood' ),
       'footer_business'  => __( 'Footer Business', 'kirkwood' ),
+      'footer_wealth'  => __( 'Footer Wealth', 'kirkwood' ),
+      'footer_quick'  => __( 'Footer Quick Links', 'kirkwood' ),
   ) );
 }
 add_action( 'after_setup_theme', 'kirkwood_register_nav_menus', 0 );
