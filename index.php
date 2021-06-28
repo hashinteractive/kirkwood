@@ -112,3 +112,7 @@ function kirkwood_register_nav_menus(){
   ) );
 }
 add_action( 'after_setup_theme', 'kirkwood_register_nav_menus', 0 );
+
+/** Add Page Templates Using Plugin */
+require_once( plugin_dir_path( __FILE__ ) . 'page-templater.php' );
+add_action( 'plugins_loaded', array( 'PageTemplater', 'get_instance' ) );
