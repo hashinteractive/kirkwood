@@ -122,7 +122,10 @@ add_action('graphql_register_types', function () {
       'type' => 'String',
       'description' => 'WordPress Page Template',
       'resolve' => function ($post) {
-          return get_page_template_slug($post->ID);
+          $template = get_page_template_slug($post->ID);
+          $ext = pathinfo($template, PATHINFO_EXTENSION);
+          $slug = basename($template,".".$ext);
+          return $slug;
       },
   ]);
 });
