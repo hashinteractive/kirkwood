@@ -3,3 +3,4 @@
  * Template Name: Good to Be Bad
  * Description: A Page Template with a darker design.
  */
+echo "Testing template file";
