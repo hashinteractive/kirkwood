@@ -122,7 +122,7 @@ add_action('graphql_register_types', function () {
       'type' => 'String',
       'description' => 'WordPress Page Template',
       'resolve' => function ($post) {
-          $template = get_page_template_slug($post->ID);
+          $template = get_post_meta( $post->ID, '_wp_page_template', true );
           $ext = pathinfo($template, PATHINFO_EXTENSION);
           $slug = basename($template,".".$ext);
           return $slug;
