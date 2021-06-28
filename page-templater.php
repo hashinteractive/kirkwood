@@ -42,7 +42,14 @@ class PageTemplater {
 			array( $this, 'register_project_templates' )
 		);
 
-    		// Add your templates to this array.
+    // Add a filter to the template include to determine if the page has our
+		// template assigned and return it's path
+		add_filter(
+			'template_include',
+			array( $this, 'view_project_template')
+		);
+
+   	// Add your templates to this array.
 		$this->templates = array(
 			'goodtobebad-template.php' => 'It\'s Good to Be Bad',
 		);
@@ -85,6 +92,29 @@ class PageTemplater {
 		wp_cache_add( $cache_key, $templates, 'themes', 1800 );
 
 		return $atts;
+
+	}
+
+  public function view_project_template( $template ) {
+
+		global $post;
+
+		// If no posts found, return to
+		// avoid "Trying to get property of non-object" error
+		if ( !isset( $post ) ) return $template;
+
+		if ( ! isset( $this->templates[ get_post_meta( $post->ID, '_wp_page_template', true ) ] ) ) {
+			return $template;
+		} // end if
+
+		$file = plugin_dir_path( __FILE__ ) . 'templates/' . get_post_meta( $post->ID, '_wp_page_template', true );
+
+		// Just to be safe, we check if the file exist first
+		if( file_exists( $file ) ) {
+			return $file;
+		} // end if
+
+		return $template;
 
 	}
 
