@@ -116,3 +116,13 @@ add_action( 'after_setup_theme', 'kirkwood_register_nav_menus', 0 );
 /** Add Page Templates Using Plugin */
 require_once( plugin_dir_path( __FILE__ ) . 'page-templater.php' );
 add_action( 'plugins_loaded', array( 'PageTemplater', 'get_instance' ) );
+
+add_action('graphql_register_types', function () {
+  register_graphql_field('Page', 'pageTemplate', [
+      'type' => 'String',
+      'description' => 'WordPress Page Template',
+      'resolve' => function ($post) {
+          return get_post_meta( $post->ID, '_wp_page_template', true );
+      },
+  ]);
+});
