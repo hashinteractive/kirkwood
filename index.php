@@ -33,6 +33,21 @@ function register_custom_post_types()
         'custom-fields'
       ]
     ],
+    'team_member' => [
+      'icon' => 'dashicons-businessperson',
+      'plural' => 'Team Members',
+      'has_archive' => true,
+      'hierarchical' => false,
+      'with_front' => true,
+      'show_in_graphql' => true,
+      'supports' => [
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+        'custom-fields'
+      ]
+    ],
   ];
 
   foreach ($types as $type => $data) {
@@ -96,6 +111,7 @@ add_action('init', 'register_custom_post_types');
 /** Allow SVG types */
 function cc_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
+  $mimes['webp'] = 'image/webp';
   return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
