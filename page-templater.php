@@ -53,6 +53,7 @@ class PageTemplater {
 		$this->templates = array(
 			'home.php' => 'Homepage',
 			'service.php' => 'Service',
+			'about.php' => 'About',
 		);
   }
   
