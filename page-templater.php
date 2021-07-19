@@ -54,6 +54,7 @@ class PageTemplater {
 			'home.php' => 'Homepage',
 			'service.php' => 'Service',
 			'about.php' => 'About',
+			'subservice.php' => 'Sub Service',
 		);
   }
   
