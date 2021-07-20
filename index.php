@@ -48,6 +48,20 @@ function register_custom_post_types()
         'custom-fields'
       ]
     ],
+    'faq' => [
+      'icon' => 'dashicons-admin-comments',
+      'plural' => 'FAQs',
+      'has_archive' => true,
+      'hierarchical' => false,
+      'with_front' => true,
+      'show_in_graphql' => true,
+      'supports' => [
+        'title',
+        'editor',
+        'revisions',
+        'custom-fields'
+      ]
+    ],
   ];
 
   foreach ($types as $type => $data) {
