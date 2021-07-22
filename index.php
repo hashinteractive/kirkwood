@@ -62,6 +62,35 @@ function register_custom_post_types()
         'custom-fields'
       ]
     ],
+    'branch' => [
+      'icon' => 'dashicons-building',
+      'plural' => 'Branches',
+      'has_archive' => true,
+      'hierarchical' => false,
+      'with_front' => true,
+      'show_in_graphql' => true,
+      'supports' => [
+        'title',
+        'editor',
+        'thumbnail',
+        'revisions',
+        'custom-fields'
+      ]
+    ],
+    'atm' => [
+      'icon' => 'dashicons-location-alt',
+      'plural' => 'atms',
+      'has_archive' => true,
+      'hierarchical' => false,
+      'with_front' => true,
+      'show_in_graphql' => true,
+      'supports' => [
+        'title',
+        'editor',
+        'revisions',
+        'custom-fields'
+      ]
+    ],
   ];
 
   foreach ($types as $type => $data) {
@@ -117,6 +146,52 @@ function register_custom_post_types()
     ];
 
     register_post_type($slug, $args);
+    flush_rewrite_rules();
+  }
+
+  $taxonomies = [
+    'location' => [
+      'plural' => 'Locations',
+      'object_type' => ['branch', 'atm'],
+      'hierarchical' => true,
+      'show_in_graphql' => true
+    ],
+  ];
+  foreach ($taxonomies as $taxonomy => $data) {
+    $slug = str_replace(["/", "  ", " "], ["", " ", "_"], $taxonomy);
+    $plural = isset($data['plural']) ? $data['plural'] : $taxonomy . 's';
+    $plural_slug = str_replace(["/", "  ", " "], ["", " ", "_"], $plural);
+    $graphql_single_name = str_replace('_', '', ucwords($slug, '_'));
+    $graphql_plural_name = str_replace('_', '', ucwords($plural_slug, '_'));
+
+    $labels = [
+      'name' => ucwords($plural),
+    ];
+
+    $args = [
+      'labels' => $labels,
+      'description' => 'Custom Taxonomy ' . $plural,
+      'public' => true,
+      'show_ui' => isset($data['show']) ? $data['show'] : true,
+      'show_in_nav_menus' => isset($data['show']) ? $data['show'] : true,
+      'show_in_menu' => isset($data['show']) ? $data['show'] : true,
+      'show_admin_column' => isset($data['show']) ? $data['show'] : true,
+      'show_tagcloud' => false,
+      'menu_position' => 20,
+      'menu_icon' => $data['icon'],
+      'hierarchical' => isset($data['hierarchical']) ? $data['hierarchical'] : true,
+      'rewrite' => [
+        'slug' => isset($data['slug_base']) ? $data['slug_base'] . $slug : $slug,
+        'with_front' => false,
+      ],
+      'query_var' => true,
+      'show_in_rest' => true,
+      'show_in_graphql' => isset($data['show_in_graphql']) ? $data['show_in_graphql'] : true,
+      'graphql_single_name' => $graphql_single_name,
+      'graphql_plural_name' => $graphql_plural_name,
+    ];
+
+    register_taxonomy($slug, $data['object_type'], $args);
     flush_rewrite_rules();
   }
 }
