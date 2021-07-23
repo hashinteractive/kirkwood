@@ -210,6 +210,7 @@ add_filter('upload_mimes', 'cc_mime_types');
  */
 function kirkwood_register_nav_menus(){
   register_nav_menus( array(
+      'top' => __( 'Top Header', 'kirkwood' ),
       'main' => __( 'Main Menu', 'kirkwood' ),
       'footer_personal' => __( 'Footer Personal', 'kirkwood' ),
       'footer_business'  => __( 'Footer Business', 'kirkwood' ),
