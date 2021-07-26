@@ -56,7 +56,8 @@ class PageTemplater {
 			'about.php' => 'About',
 			'subservice.php' => 'Sub Service',
 			'resources.php' => 'Resource Center',
-			'contact.php' => 'Contact'
+			'contact.php' => 'Contact',
+			'locations.php' => 'Locations'
 		);
   }
   
