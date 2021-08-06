@@ -153,9 +153,17 @@ function register_custom_post_types()
     'location' => [
       'plural' => 'Locations',
       'object_type' => ['branch', 'atm'],
-      'hierarchical' => true,
+      'hierarchical' => false,
+      'meta_box_cb' => 'post_categories_meta_box',
       'show_in_graphql' => true
     ],
+    'category' => [
+      'plural' => 'Categories',
+      'object_type' => ['faq'],
+      'hierarchical' => false,
+      'meta_box_cb' => 'post_categories_meta_box',
+      'show_in_graphql' => true
+    ]
   ];
   foreach ($taxonomies as $taxonomy => $data) {
     $slug = str_replace(["/", "  ", " "], ["", " ", "_"], $taxonomy);
@@ -180,6 +188,7 @@ function register_custom_post_types()
       'menu_position' => 20,
       'menu_icon' => $data['icon'],
       'hierarchical' => isset($data['hierarchical']) ? $data['hierarchical'] : true,
+      'meta_box_cb' => isset($data['meta_box_cb']) ? $data['meta_box_cb'] : 'post_categories_meta_box',
       'rewrite' => [
         'slug' => isset($data['slug_base']) ? $data['slug_base'] . $slug : $slug,
         'with_front' => false,
