@@ -157,8 +157,8 @@ function register_custom_post_types()
       'meta_box_cb' => 'post_categories_meta_box',
       'show_in_graphql' => true
     ],
-    'category' => [
-      'plural' => 'Categories',
+    'faq_category' => [
+      'plural' => 'Faqs Categories',
       'object_type' => ['faq'],
       'hierarchical' => false,
       'meta_box_cb' => 'post_categories_meta_box',
