@@ -219,7 +219,8 @@ add_filter('upload_mimes', 'cc_mime_types');
  */
 add_filter('wp_handle_upload_prefilter', 'check_valid_filenames' );
 function check_valid_filenames( $file ){
-  if(preg_match('/[A-Za-z0-9_\-]+/', $file['name'])){
+  $path = pathinfo($file['name']);
+  if(preg_match('/[A-Za-z0-9_\-]+/', $path['filename'])){
     $file['error'] = __('Sorry that is not a valid filename. Filename must contain alphanumeric characters and/or hyphens and underscores');
   }
   return $file;
