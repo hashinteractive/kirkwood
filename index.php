@@ -215,6 +215,16 @@ function cc_mime_types($mimes) {
 add_filter('upload_mimes', 'cc_mime_types');
 
 /**
+ * Check File Names on upload
+ */
+add_filter('wp_handle_upload_prefilter', 'check_valid_filenames' );
+function check_valid_filenames( $file ){
+  if(preg_match('/[A-Za-z0-9_\-]+/', $file['name'])){
+    $file['error'] = __('Sorry that is not a valid filename. Filename must contain alphanumeric characters and/or hyphens and underscores');
+  }
+  return $file;
+}
+/**
  * Register Menus
  */
 function kirkwood_register_nav_menus(){
