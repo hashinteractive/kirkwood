@@ -129,7 +129,7 @@ function register_custom_post_types()
       'hierarchical' => isset($data['hierarchical']) ? $data['hierarchical'] : true,
       'rewrite' => [
         'slug' => isset($data['slug_base']) ? $data['slug_base'] . $slug : $slug,
-        'with_front' => isset($data['with_front']) ? $data['with_fron'] : false,
+        'with_front' => isset($data['with_front']) ? $data['with_front'] : false,
         'feeds' => true,
       ],
       'query_var' => true,
@@ -186,7 +186,7 @@ function register_custom_post_types()
       'show_admin_column' => isset($data['show']) ? $data['show'] : true,
       'show_tagcloud' => false,
       'menu_position' => 20,
-      'menu_icon' => $data['icon'],
+      'menu_icon' => isset($data['icon']) ? $data['icon'] : '',
       'hierarchical' => isset($data['hierarchical']) ? $data['hierarchical'] : true,
       'meta_box_cb' => isset($data['meta_box_cb']) ? $data['meta_box_cb'] : 'post_categories_meta_box',
       'rewrite' => [
