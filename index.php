@@ -86,6 +86,7 @@ function register_custom_post_types()
       'show_in_graphql' => true,
       'supports' => [
         'title',
+        'page-attributes',
         'editor',
         'revisions',
         'custom-fields'
