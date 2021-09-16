@@ -274,7 +274,10 @@ function kw_dashboard_widget_display(){
   ob_start();
   ?>
     <p><?php echo $options['message']; ?></p>
-    <p><label>Active</label> <?php echo $options['active'] ? 'Yes' : 'No'; ?></p>
+    <p
+     style="vertical-align: middle;">
+     <strong>Active:</strong> <span><?php echo $options['active'] ? 'Yes' : 'No'; ?></span>
+    </p>
   <?php
   $output = ob_get_clean();
   echo $output;
@@ -297,10 +300,10 @@ function kw_dashboard_widget_config(){
   }
   ?>
      <div
-       style="padding: 2em 0;">
+       style="padding: 1.15rem 0;">
        <div>
         <label
-          style="display: block;">
+          style="display: block; margin-bottom: 0.35rem;">
           <?php _e('Message', 'kirkwood'); ?>
         </label>
         <textarea
@@ -308,6 +311,7 @@ function kw_dashboard_widget_config(){
             max-height: 1300px;
             margin: 0 0 8px;
             padding: 6px 7px;
+            width: 100%;
             resize: none;"
           name="message" rows="4" cols="15"><?php echo $options['message']; ?></textarea>
        </div>
