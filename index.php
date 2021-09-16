@@ -287,25 +287,32 @@ function kw_dashboard_widget_config(){
   ));
 
   if(isset($_POST['submit'])){
-    if(isset($_POST['active'])){
-      $options['active'] = $_POST['active'];
-    }
     if(isset($_POST['message'])){
       $options['message'] = $_POST['message'];
     }
 
+    $options['active'] = $_POST['active'];
+
     update_option('kirkwood_alert', $options);
   }
   ?>
-     <div>
+     <div
+       style="padding: 2em 0;">
        <div>
-        <label>
+        <label
+          style="display: block;">
           <?php _e('Message', 'kirkwood'); ?>
         </label>
-        <textarea name="message" rows="4" cols="15"><?php echo $options['message']; ?></textarea>
+        <textarea
+          style="min-height: 90px;
+            max-height: 1300px;
+            margin: 0 0 8px;
+            padding: 6px 7px;
+            resize: none;"
+          name="message" rows="4" cols="15"><?php echo $options['message']; ?></textarea>
        </div>
        <div
-        style="margin-top: 1rem;">
+        style="margin-top: 1em;">
         <label>
           <?php _e('Active', 'kirkwood'); ?>
           <input name="active" type="checkbox" <?php echo $options['active'] ? 'checked' : '' ?>/>
