@@ -297,15 +297,20 @@ function kw_dashboard_widget_config(){
     update_option('kirkwood_alert', $options);
   }
   ?>
-     <p>
-       <label>
-         <?php _e('Message', 'kirkwood'); ?>
-         <textarea name="message" rows="4"><?php echo $options['message']; ?></textarea>
-       </label>
-       <label>
-         <?php _e('Active', 'kirkwood'); ?>
-         <input name="active" type="checkbox" <?php echo $options['active'] ? 'checked' : '' ?>/>
-       </label>
-     </p>
+     <div>
+       <div>
+        <label>
+          <?php _e('Message', 'kirkwood'); ?>
+        </label>
+        <textarea name="message" rows="4" cols="15"><?php echo $options['message']; ?></textarea>
+       </div>
+       <div
+        style="margin-top: 1rem;">
+        <label>
+          <?php _e('Active', 'kirkwood'); ?>
+          <input name="active" type="checkbox" <?php echo $options['active'] ? 'checked' : '' ?>/>
+        </label>
+       </div>
+     </div>
   <?php
 }
