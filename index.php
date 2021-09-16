@@ -267,10 +267,5 @@ function kw_dashboard_widgets(){
 }
 
 function kw_dashboard_widget_display(){
-  ob_start();
-  ?>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus eum accusantium provident aliquam illo, quas incidunt natus velit eveniet, exercitationem ut! Ad minima, veniam voluptates obcaecati beatae quidem consequatur.</p>
-  <?php
-  $output = ob_get_clean();
-  return $output;
+  echo '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus eum accusantium provident aliquam illo, quas incidunt natus velit eveniet, exercitationem ut! Ad minima, veniam voluptates obcaecati beatae quidem consequatur.</p>';
 }
