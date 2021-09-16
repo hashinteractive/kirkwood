@@ -366,6 +366,6 @@ function gatsby_track_settings($should_track, $option_name, $old_value, $value){
     'old_value' => $old_value,
     'value' => $value
   );
-  error_log(print_r($list), 3, '/tmp/message.log');
+  error_log(print_r($list, true), 3, '/tmp/message.log');
   return $list;
 }
