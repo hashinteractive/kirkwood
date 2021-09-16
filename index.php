@@ -246,6 +246,35 @@ require_once( plugin_dir_path( __FILE__ ) . 'page-templater.php' );
 add_action( 'plugins_loaded', array( 'PageTemplater', 'get_instance' ) );
 
 add_action('graphql_register_types', function () {
+
+  register_graphql_object_type( 'Alert', [
+    'description' => __( 'Alert option', 'kirkwood' ),
+    'fields' => [
+      'message' => [
+        'type' => 'String',
+        'description' => __( 'This is the alert message that is set on the WP dashboard', 'kirkwood' ),
+      ],
+      'active' => [
+        'type' => 'Boolean',
+        'description' => __( 'Determines if the alert message is active or not', 'kirkwood' ),
+      ],
+    ],
+  ] );
+
+  register_graphql_field( 'RootQuery', 'alert', [
+    'type' => 'Alert',
+    'resolve' => function() {
+      $options = wp_parse_args(get_option('kirkwood_alert'), array(
+        'active' => false,
+        'message' => ''
+      ));
+      return [
+        'message' => $options['message'],
+        'active' => $options['active'],
+      ];
+    }
+  ] );
+
   register_graphql_field('Page', 'pageTemplate', [
       'type' => 'String',
       'description' => 'WordPress Page Template',
