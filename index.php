@@ -368,6 +368,8 @@ function gatsby_track_settings($should_track, $option_name, $old_value, $value){
   // );
   // error_log(print_r($list, true), 3, '/tmp/message.log');
   if($option_name === 'kirkwood_alert'){
-    return true;
+    $should_track = true;
   }
+
+  return $should_track;
 }
