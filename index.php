@@ -263,14 +263,49 @@ add_action('graphql_register_types', function () {
  */
 add_action('wp_dashboard_setup', 'kw_dashboard_widgets');
 function kw_dashboard_widgets(){
-  wp_add_dashboard_widget('kw_dashboard_widget_alert', __('Alert', 'kirkwood'), 'kw_dashboard_widget_display');
+  wp_add_dashboard_widget('kw_dashboard_widget_alert', __('Alert', 'kirkwood'), 'kw_dashboard_widget_display', 'kw_dashboard_widget_config',);
 }
 
 function kw_dashboard_widget_display(){
+  $options = wp_parse_args(get_option('kirkwood_alert'), array(
+    'active' => false,
+    'message' => ''
+  ));
   ob_start();
   ?>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus eum accusantium provident aliquam illo, quas incidunt natus velit eveniet, exercitationem ut! Ad minima, veniam voluptates obcaecati beatae quidem consequatur.</p>
+    <p><?php echo $options['message']; ?></p>
+    <p><label>Active</label> <?php echo $options['active'] ? 'Yes' : 'No'; ?></p>
   <?php
   $output = ob_get_clean();
   echo $output;
+}
+
+function kw_dashboard_widget_config(){
+  $options = wp_parse_args(get_option('kirkwood_alert'), array(
+    'active' => false,
+    'message' => ''
+  ));
+
+  if(isset($_POST['submit'])){
+    if(isset($_POST['active'])){
+      $options['active'] = $_POST['active'];
+    }
+    if(isset($_POST['message'])){
+      $options['message'] = $_POST['message'];
+    }
+
+    update_option('kirkwood_alert', $options);
+  }
+  ?>
+     <p>
+       <label>
+         <?php _e('Message', 'kirkwood'); ?>
+         <textarea name="message" rows="4"><?php echo $options['message']; ?></textarea>
+       </label>
+       <label>
+         <?php _e('Active', 'kirkwood'); ?>
+         <input name="active" type="checkbox" <?php echo $options['active'] ? 'checked' : '' ?>/>
+       </label>
+     </p>
+  <?php
 }
