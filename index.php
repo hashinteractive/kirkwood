@@ -358,7 +358,7 @@ function kw_dashboard_widget_config(){
 /**
  * Track Setting changes
  */
-add_filter('gatsby_action_monitor_should_track_option', 'gatsby_track_settings');
+add_filter('gatsby_action_monitor_should_track_option', 'gatsby_track_settings', 10, 4);
 function gatsby_track_settings($should_track, $option_name, $old_value, $value){
   $list = array(
     'should_track' => $should_track,
