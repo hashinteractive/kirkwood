@@ -354,3 +354,12 @@ function kw_dashboard_widget_config(){
      </div>
   <?php
 }
+
+/**
+ * Track Setting changes
+ */
+add_filter('gatsby_action_monitor_should_track_option', 'gatsby_track_settings');
+function gatsby_track_settings($list){
+  error_log(print_r($list, true), 3, '/tmp/message.log');
+  return $list;
+}
