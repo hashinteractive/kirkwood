@@ -360,12 +360,14 @@ function kw_dashboard_widget_config(){
  */
 add_filter('gatsby_action_monitor_should_track_option', 'gatsby_track_settings', 10, 4);
 function gatsby_track_settings($should_track, $option_name, $old_value, $value){
-  $list = array(
-    'should_track' => $should_track,
-    'option_name' => $option_name,
-    'old_value' => $old_value,
-    'value' => $value
-  );
-  error_log(print_r($list, true), 3, '/tmp/message.log');
-  return $list;
+  // $list = array(
+  //   'should_track' => $should_track,
+  //   'option_name' => $option_name,
+  //   'old_value' => $old_value,
+  //   'value' => $value
+  // );
+  // error_log(print_r($list, true), 3, '/tmp/message.log');
+  if($option_name === 'kirkwood_alert'){
+    return true;
+  }
 }
