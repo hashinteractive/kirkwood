@@ -292,7 +292,7 @@ add_action('graphql_register_types', function () {
  */
 add_action('wp_dashboard_setup', 'kw_dashboard_widgets');
 function kw_dashboard_widgets(){
-  wp_add_dashboard_widget('kw_dashboard_widget_alert', __('Alert', 'kirkwood'), 'kw_dashboard_widget_display', 'kw_dashboard_widget_config',);
+  wp_add_dashboard_widget('kw_dashboard_widget_alert', __('Alert', 'kirkwood'), 'kw_dashboard_widget_display', 'kw_dashboard_widget_config');
 }
 
 function kw_dashboard_widget_display(){
@@ -335,14 +335,14 @@ function kw_dashboard_widget_config(){
           style="display: block; margin-bottom: 0.35rem;">
           <?php _e('Message', 'kirkwood'); ?>
         </label>
-        <textarea
-          style="min-height: 90px;
-            max-height: 1300px;
-            margin: 0 0 8px;
-            padding: 6px 7px;
-            width: 100%;
-            resize: none;"
-          name="message" rows="4" cols="15"><?php echo $options['message']; ?></textarea>
+        <?php
+          wp_editor(stripslashes($options['message']),
+              'message',
+              array(
+                  'textarea_name' => 'message'
+              )
+          );
+        ?> 
        </div>
        <div
         style="margin-top: 1em;">
