@@ -58,7 +58,8 @@ class PageTemplater {
 			'resources.php' => 'Resource Center',
 			'contact.php' => 'Contact',
 			'locations.php' => 'Locations',
-			'careers.php' => 'Careers'
+			'careers.php' => 'Careers',
+			'files.php' => 'Files Library'
 		);
   }
   
